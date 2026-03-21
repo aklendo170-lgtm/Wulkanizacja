@@ -39,12 +39,26 @@
             border-bottom: 1px solid var(--glass-border); padding: 10px 5%;
         }
         
-        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.1rem, 4.5vw, 1.3rem); text-decoration: none; color: var(--text-light); z-index: 2005; display: flex; align-items: center; gap: 10px; text-transform: uppercase; position: relative;}
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.1rem, 4.5vw, 1.3rem); text-decoration: none; color: var(--text-light); z-index: 2100; display: flex; align-items: center; gap: 10px; text-transform: uppercase; position: relative;}
         .logo span { color: var(--accent); }
         .logo-icon { width: 35px; height: 35px; background: var(--glass-border); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px solid var(--accent); font-size: 0.9rem;}
 
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 2005; padding: 5px; flex-shrink: 0; position: relative;}
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 2100; padding: 5px; flex-shrink: 0; position: relative;}
         .hamburger span { width: 25px; height: 2px; background-color: var(--text-light); transition: all 0.3s ease-in-out; }
+
+        /* --- MENU DESKTOPOWE --- */
+        .desktop-menu { 
+            display: flex; gap: 30px; align-items: center; 
+            background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            position: absolute; left: 50%; transform: translateX(-50%);
+        }
+        .desktop-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.85rem; position: relative; padding-bottom: 5px; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.5px;}
+        .desktop-menu a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
+        .desktop-menu a:hover { color: var(--accent); }
+        .desktop-menu a:hover::after { width: 100%; }
+
+        .desktop-actions { display: flex; gap: 15px; align-items: center; }
 
         .btn { background: var(--accent); color: white; padding: 14px 30px; text-decoration: none; font-weight: 700; border-radius: 30px; transition: all 0.3s; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px var(--accent-glow);}
         .btn:hover { background: #e67e00; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(217, 105, 43, 0.6); }
@@ -52,42 +66,24 @@
         .btn-outline { background: transparent; color: var(--text-light); padding: 12px 25px; border-radius: 30px; border: 1px solid var(--glass-border); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: all 0.3s; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px;}
         .btn-outline:hover { background: rgba(217, 105, 43, 0.1); border-color: var(--accent); }
 
-        /* --- MENU - DESKTOP ONLY --- */
-        @media (min-width: 1025px) {
-            .nav-links { 
-                display: flex; gap: 30px; align-items: center; 
-                background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
-                backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-                position: absolute; left: 50%; transform: translateX(-50%);
-            }
-            .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.85rem; position: relative; padding-bottom: 5px; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.5px;}
-            .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
-            .nav-links a:hover { color: var(--accent); }
-            .nav-links a:hover::after { width: 100%; }
-            .mobile-actions { display: none; }
-            .desktop-actions { display: flex; gap: 15px; align-items: center; }
+        /* --- ODDZIELNE MENU MOBILNE (KULOODPORNE) --- */
+        .mobile-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--bg-main);
+            z-index: 2050;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
+        .mobile-overlay.active { opacity: 1; pointer-events: auto; }
+        .mobile-overlay a { text-decoration: none; color: var(--text-light); font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .mobile-overlay .mobile-actions { display: flex; flex-direction: column; gap: 15px; width: 80%; max-width: 300px; margin-top: 30px; }
+        .mobile-overlay .btn, .mobile-overlay .btn-outline { width: 100%; height: 55px; }
 
-        /* --- MENU - MOBILE ONLY --- */
-        @media (max-width: 1024px) { 
+        @media (max-width: 1150px) { 
             .hamburger { display: flex; }
-            .desktop-actions { display: none; }
+            .desktop-menu, .desktop-actions { display: none; }
             
             nav.menu-open { background: transparent !important; border: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-
-            .nav-links { 
-                position: fixed; top: 0; left: -100%; width: 100%; height: 100dvh; 
-                background: var(--bg-main); 
-                display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 35px; 
-                transition: left 0.4s ease; z-index: 2001;
-            }
-            .nav-links a { text-decoration: none; color: var(--text-light); font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
-            
-            .mobile-actions { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin-top: 20px; }
-            .mobile-actions .btn, .mobile-actions .btn-outline { width: 100%; height: 55px; }
-
-            nav.menu-open .nav-links { left: 0; }
-
             nav.menu-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             nav.menu-open .hamburger span:nth-child(2) { opacity: 0; }
             nav.menu-open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -114,7 +110,7 @@
         .section-padding { padding: 80px 10%; }
 
         /* --- USŁUGI --- */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { 
             background: var(--bg-card); padding: 40px; border-radius: 15px; text-align: center; border: 1px solid var(--border-light); 
             transition: transform 0.3s; position: relative; overflow: hidden;
@@ -131,6 +127,24 @@
         .card h3 { font-family: 'Montserrat'; margin-bottom: 15px; font-size: 1.25rem; z-index: 1; position: relative; color: white;}
         .card p { font-size: 0.95rem; color: var(--text-muted); z-index: 1; position: relative; font-weight: 300;}
 
+        /* --- CENNIK --- */
+        .price-table-container { max-width: 800px; margin: 0 auto; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border-light); overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+        .price-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .price-table th, .price-table td { padding: 20px 25px; border-bottom: 1px solid var(--border-light); }
+        .price-table th { background: rgba(255, 255, 255, 0.02); font-family: 'Montserrat', sans-serif; color: var(--text-light); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; font-weight: 700; }
+        .price-table tr { transition: background 0.3s ease; }
+        .price-table tr:hover { background: rgba(217, 105, 43, 0.05); }
+        .price-table tr:last-child td { border-bottom: none; }
+        .price-table td { font-size: 0.95rem; color: var(--text-muted); }
+        .price-table td.price { color: var(--accent); font-weight: 700; text-align: right; font-size: 1.1rem; white-space: nowrap; }
+        
+        @media (max-width: 600px) {
+            .price-table th, .price-table td { padding: 15px; }
+            .price-table th { font-size: 0.8rem; }
+            .price-table td { font-size: 0.85rem; }
+            .price-table td.price { font-size: 1rem; }
+        }
+
         /* --- MODAL --- */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.9); display: none; justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);}
         .modal-content { background: var(--bg-card); padding: 40px; border-radius: 20px; width: 90%; max-width: 500px; position: relative; text-align: center; border: 1px solid rgba(217, 105, 43, 0.2); box-shadow: 0 0 50px rgba(217, 105, 43, 0.1);}
@@ -138,25 +152,21 @@
         .close:hover { color: var(--accent); }
 
         form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; text-align: left; }
-        
-        /* Naprawa stylowania formularza i selecta */
-        input, select, textarea { padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; background: rgba(255,255,255,0.02); color: white;}
-        input:focus, select:focus, textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.04); }
+        input, textarea { padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; background: rgba(255,255,255,0.02); color: white;}
+        input:focus, textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.04); }
         textarea { resize: vertical; min-height: 100px; }
         
-        select {
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a0a0ab%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px top 50%;
-            background-size: 12px auto;
-            cursor: pointer;
+        /* NOWE KAFELKI ZAMIAST BRZYDKIEGO SELECTA */
+        .chips-container { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 5px;}
+        .chip { flex: 1; min-width: 130px;}
+        .chip input { display: none; }
+        .chip span { 
+            padding: 12px 10px; border: 1px solid var(--border-light); border-radius: 8px; 
+            cursor: pointer; display: block; font-size: 0.85rem; color: var(--text-muted); 
+            transition: 0.2s; background: rgba(255,255,255,0.02); text-align: center; font-weight: 600;
         }
-        /* Wymuszenie tła opcji dla Windows/Android */
-        select option {
-            background-color: var(--bg-card);
-            color: var(--text-light);
+        .chip input:checked + span { 
+            background: rgba(217, 105, 43, 0.1); border-color: var(--accent); color: var(--accent); 
         }
 
         /* FOOTER & MAP */
@@ -174,6 +184,17 @@
 
 <body>
 
+    <div class="mobile-overlay" id="mobileMenu">
+        <a href="#uslugi" class="nav-item">Wulkanizacja</a>
+        <a href="#felgi" class="nav-item">Prostowanie Felg</a>
+        <a href="#cennik" class="nav-item">Cennik</a>
+        <a href="#kontakt" class="nav-item">Kontakt</a>
+        <div class="mobile-actions">
+            <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
+            <button class="btn" onclick="toggleModal()">Darmowa Wycena</button>
+        </div>
+    </div>
+
     <nav id="navbar">
         <a href="#" class="logo">
             <div class="logo-icon">🔧</div>
@@ -184,15 +205,11 @@
             <span></span><span></span><span></span>
         </div>
 
-        <div class="nav-links">
-            <a href="#uslugi" class="nav-item">Wulkanizacja</a>
-            <a href="#felgi" class="nav-item">Prostowanie Felg</a>
-            <a href="#kontakt" class="nav-item">Kontakt</a>
-            
-            <div class="mobile-actions">
-                <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
-                <button class="btn" onclick="toggleModal()">Darmowa Wycena</button>
-            </div>
+        <div class="desktop-menu">
+            <a href="#uslugi">Wulkanizacja</a>
+            <a href="#felgi">Prostowanie Felg</a>
+            <a href="#cennik">Cennik</a>
+            <a href="#kontakt">Kontakt</a>
         </div>
 
         <div class="desktop-actions">
@@ -254,6 +271,54 @@
         <button class="btn" style="display: block; margin: 0 auto;" onclick="toggleModal()">WYCEŃ USTERKĘ</button>
     </section>
 
+    <section id="cennik" class="section-padding">
+        <div class="section-header">
+            <h2>Przykładowy <span>Cennik</span></h2>
+            <p>Sprawdź orientacyjne koszty. Każde uszkodzenie felgi wyceniamy indywidualnie.</p>
+        </div>
+        
+        <div class="price-table-container">
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Rodzaj Usługi</th>
+                        <th style="text-align: right;">Cena orientacyjna</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Wymiana opon (komplet) z wyważeniem</td>
+                        <td class="price">od 120 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Prostowanie felgi aluminiowej</td>
+                        <td class="price">od 150 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Prostowanie felgi stalowej</td>
+                        <td class="price">od 80 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Spawanie pęknięcia felgi (metoda TIG)</td>
+                        <td class="price">od 120 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Wyważanie kół (komplet 4 szt.)</td>
+                        <td class="price">od 60 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Bieżąca mechanika (klocki, tarcze, oleje)</td>
+                        <td class="price">Wycena po oględzinach</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 300;">Podane ceny są cenami brutto i mogą ulec zmianie w zależności od stopnia uszkodzenia felgi oraz rozmiaru koła.</p>
+        </div>
+    </section>
+
     <div class="modal" id="bookingModal">
         <div class="modal-content">
             <span class="close" onclick="toggleModal()">×</span>
@@ -268,12 +333,20 @@
                 <input type="text" name="name" placeholder="Twoje Imię i Nazwisko" required>
                 <input type="tel" name="phone" placeholder="Twój Numer Telefonu" required>
                 
-                <select name="service_type" required>
-                    <option value="" disabled selected>Co naprawiamy?</option>
-                    <option value="Felga">Uszkodzona Felga</option>
-                    <option value="Opona">Naprawa Opony</option>
-                    <option value="Auto">Auto Serwis / Mechanika</option>
-                </select>
+                <div class="chips-container">
+                    <label class="chip">
+                        <input type="radio" name="service_type" value="Uszkodzona Felga" required>
+                        <span>Uszkodzona Felga</span>
+                    </label>
+                    <label class="chip">
+                        <input type="radio" name="service_type" value="Naprawa Opony">
+                        <span>Naprawa Opony</span>
+                    </label>
+                    <label class="chip">
+                        <input type="radio" name="service_type" value="Serwis / Mechanika">
+                        <span>Serwis Auta</span>
+                    </label>
+                </div>
 
                 <textarea name="description" placeholder="Opisz krótko usterkę i czego potrzebujesz..." required></textarea>
                 
@@ -293,7 +366,7 @@
         <p>ul. Paproci 7A, 30-714 Kraków</p>
         
         <div class="map-container">
-            <iframe src="https://maps.google.com/?cid=6191388040280757872&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ2" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.615671569424!2d19.9880145!3d50.037303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471644d67389a315%3A0xf64f7b2c0199dc65!2sPaproci%207a%2C%2030-714%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1710000000000!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="data-kontaktowe">
@@ -317,13 +390,16 @@
 
         function toggleMobileMenu() {
             const nav = document.getElementById('navbar');
+            const overlay = document.getElementById('mobileMenu');
             nav.classList.toggle('menu-open');
+            overlay.classList.toggle('active');
             document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : 'auto';
         }
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navbar').classList.remove('menu-open');
+                document.getElementById('mobileMenu').classList.remove('active');
                 document.body.style.overflow = 'auto';
             });
         });
@@ -336,7 +412,9 @@
             } else {
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+                // Zamknij menu mobilne jeśli jest otwarte
                 document.getElementById('navbar').classList.remove('menu-open');
+                document.getElementById('mobileMenu').classList.remove('active');
             }
         }
 
