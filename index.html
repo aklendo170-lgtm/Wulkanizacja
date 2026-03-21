@@ -39,7 +39,6 @@
             border-bottom: 1px solid var(--glass-border); padding: 10px 5%;
         }
         
-        /* Logo i Hamburger z wymuszonym z-index, aby ZAWSZE były nad menu mobilnym */
         .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.1rem, 4.5vw, 1.3rem); text-decoration: none; color: var(--text-light); z-index: 2005; display: flex; align-items: center; gap: 10px; text-transform: uppercase; position: relative;}
         .logo span { color: var(--accent); }
         .logo-icon { width: 35px; height: 35px; background: var(--glass-border); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px solid var(--accent); font-size: 0.9rem;}
@@ -47,7 +46,7 @@
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 2005; padding: 5px; flex-shrink: 0; position: relative;}
         .hamburger span { width: 25px; height: 2px; background-color: var(--text-light); transition: all 0.3s ease-in-out; }
 
-        /* MENU DESKTOPOWE - CENTROWANIE */
+        /* --- MENU DESKTOPOWE (CENTROWANIE) --- */
         .nav-links { 
             display: flex; gap: 30px; align-items: center; 
             background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
@@ -59,7 +58,8 @@
         .nav-links a:hover { color: var(--accent); }
         .nav-links a:hover::after { width: 100%; }
 
-        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .desktop-actions { display: flex; gap: 15px; align-items: center; }
+        .mobile-actions { display: none; }
 
         .btn { background: var(--accent); color: white; padding: 14px 30px; text-decoration: none; font-weight: 700; border-radius: 30px; transition: all 0.3s; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px var(--accent-glow);}
         .btn:hover { background: #e67e00; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(217, 105, 43, 0.6); }
@@ -67,33 +67,32 @@
         .btn-outline { background: transparent; color: var(--text-light); padding: 12px 25px; border-radius: 30px; border: 1px solid var(--glass-border); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: all 0.3s; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px;}
         .btn-outline:hover { background: rgba(217, 105, 43, 0.1); border-color: var(--accent); }
 
-        /* --- RESPONSJA MENU (KULOODPORNA) --- */
+        /* --- RESPONSJA MENU (KULOODPORNA PLANSZA) --- */
         @media (max-width: 1150px) { 
             .hamburger { display: flex; }
+            .desktop-actions { display: none; }
             
-            /* Tło nav u góry znika, bo wjeżdża pełen panel */
-            nav.menu-open { background: transparent; border-bottom: none; }
+            /* Reset nawigacji nadrzędnej przy otwarciu */
+            nav.menu-open { background: transparent !important; border: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
 
-            /* Panel Menu (Linki) */
+            /* Pełnoekranowe tło menu */
             .nav-links { 
-                position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; 
-                background: var(--bg-main); /* Całkowicie nieprzezroczyste czarne tło */
-                display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 40px; 
-                border-radius: 0; border: none; transform: none; 
-                transition: left 0.4s ease; z-index: 2000;
+                position: fixed; top: 0; left: -100%; width: 100%; height: 100dvh; 
+                background: var(--bg-main) !important; 
+                flex-direction: column; justify-content: center; align-items: center; gap: 35px; 
+                border-radius: 0 !important; border: none !important; transform: none !important; padding: 0 !important;
+                backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2001;
             }
             .nav-links a { font-size: 1.5rem; }
+            .nav-links a::after { display: none; } /* Usuwamy kreski pod linkami na mobile */
 
-            /* Panel Przyciski (Telefon/Wycena) */
-            .nav-actions { 
-                position: fixed; bottom: 40px; left: -100%; width: 100%; 
-                display: flex; flex-direction: column; align-items: center; gap: 15px; 
-                padding: 0 5%; transition: left 0.4s ease; z-index: 2001;
-            }
-            .nav-actions .btn, .nav-actions .btn-outline { width: 100%; max-width: 350px; height: 55px; }
+            /* Przyciski wewnątrz mobilnego menu */
+            .mobile-actions { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin-top: 20px; }
+            .mobile-actions .btn, .mobile-actions .btn-outline { width: 100%; height: 55px; }
 
-            /* Klasy aktywujące wysunięcie */
-            nav.menu-open .nav-links, nav.menu-open .nav-actions { left: 0; }
+            /* Wysuwanie */
+            nav.menu-open .nav-links { left: 0; }
 
             /* Animacja krzyżyka */
             nav.menu-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -176,9 +175,14 @@
             <a href="#uslugi" class="nav-item">Wulkanizacja</a>
             <a href="#felgi" class="nav-item">Prostowanie Felg</a>
             <a href="#kontakt" class="nav-item">Kontakt</a>
+            
+            <div class="mobile-actions">
+                <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
+                <button class="btn" onclick="toggleModal()">Wyceń usterkę</button>
+            </div>
         </div>
 
-        <div class="nav-actions">
+        <div class="desktop-actions">
             <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
             <button class="btn" onclick="toggleModal()">Wyceń usterkę</button>
         </div>
