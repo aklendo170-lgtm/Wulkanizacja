@@ -11,7 +11,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- NOWOCZESNA PALETA KOLORÓW (Mroczny Lux) --- */
         :root { 
             --bg-main: #0a0a0c;      
             --bg-card: #141417;      
@@ -29,9 +28,9 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
 
-        /* --- GLASSMORPHISM NAVBAR --- */
+        /* --- NAVBAR --- */
         nav { 
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; 
             padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
             transition: all 0.4s ease;
         }
@@ -40,23 +39,19 @@
             border-bottom: 1px solid var(--glass-border); padding: 10px 5%;
         }
         
-        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.1rem, 4.5vw, 1.3rem); text-decoration: none; color: var(--text-light); z-index: 101; display: flex; align-items: center; gap: 10px; text-transform: uppercase;}
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.1rem, 4.5vw, 1.3rem); text-decoration: none; color: var(--text-light); z-index: 2002; display: flex; align-items: center; gap: 10px; text-transform: uppercase;}
         .logo span { color: var(--accent); }
         .logo-icon { width: 35px; height: 35px; background: var(--glass-border); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px solid var(--accent); font-size: 0.9rem;}
 
-        /* HAMBURGER */
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; padding: 5px; flex-shrink: 0; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 2002; padding: 5px; flex-shrink: 0; }
         .hamburger span { width: 25px; height: 2px; background-color: var(--text-light); transition: all 0.3s ease-in-out; }
 
-        /* MENU LINKS - IDEALNIE WYŚRODKOWANE */
+        /* MENU DESKTOPOWE - CENTROWANIE */
         .nav-links { 
             display: flex; gap: 30px; align-items: center; 
             background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            /* Zmiana: absolutne centrowanie na ekranie */
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            position: absolute; left: 50%; transform: translateX(-50%);
         }
         .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.85rem; position: relative; padding-bottom: 5px; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.5px;}
         .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
@@ -65,22 +60,38 @@
 
         .nav-actions { display: flex; gap: 15px; align-items: center; }
 
-        /* PRZYCISKI Z POŚWIATĄ */
-        .btn { background: var(--accent); color: white; padding: 14px 30px; text-decoration: none; font-weight: 700; border-radius: 30px; transition: all 0.3s; cursor: pointer; border: none; display: inline-block; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px var(--accent-glow);}
+        .btn { background: var(--accent); color: white; padding: 14px 30px; text-decoration: none; font-weight: 700; border-radius: 30px; transition: all 0.3s; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px var(--accent-glow);}
         .btn:hover { background: #e67e00; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(217, 105, 43, 0.6); }
 
         .btn-outline { background: transparent; color: var(--text-light); padding: 12px 25px; border-radius: 30px; border: 1px solid var(--glass-border); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: all 0.3s; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px;}
         .btn-outline:hover { background: rgba(217, 105, 43, 0.1); border-color: var(--accent); }
 
-        @media (max-width: 1024px) { 
+        /* --- RESPONSJA MENU (PEŁNY EKRAN) --- */
+        @media (max-width: 1150px) { 
             .hamburger { display: flex; }
-            .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; z-index: 100;}
+            .nav-links, .nav-actions { display: none; }
             
-            /* Reset centrowania dla mobile */
-            nav.menu-open .nav-links { display: flex; padding: 20px 0 10px 0; gap: 20px; position: relative; left: auto; transform: none;}
-            nav.menu-open .nav-actions { display: flex; padding-bottom: 10px; gap: 10px; z-index: 101;}
-            nav.menu-open .nav-actions .btn, nav.menu-open .nav-actions .btn-outline { width: 100%; height: 50px; text-align: center;}
+            /* Czyste czarne tło pod otwarte menu */
+            nav.menu-open { background: rgba(10, 10, 12, 0.98); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: none;}
             
+            /* Linki centrujemy na pełnym ekranie */
+            nav.menu-open .nav-links { 
+                display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+                flex-direction: column; justify-content: center; align-items: center; gap: 40px; 
+                /* Totalny reset desktopowego "pigułkowego" wyglądu */
+                background: transparent; border-radius: 0; border: none; padding: 0; transform: none; 
+                z-index: 2000;
+            }
+            nav.menu-open .nav-links a { font-size: 1.5rem; }
+            
+            /* Przyciski przypinamy do dołu */
+            nav.menu-open .nav-actions { 
+                display: flex; position: fixed; bottom: 40px; left: 5%; width: 90%; 
+                flex-direction: column; gap: 15px; z-index: 2001; 
+            }
+            nav.menu-open .nav-actions .btn, nav.menu-open .nav-actions .btn-outline { width: 100%; height: 55px; }
+            
+            /* Animacja krzyżyka */
             nav.menu-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             nav.menu-open .hamburger span:nth-child(2) { opacity: 0; }
             nav.menu-open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -124,8 +135,8 @@
         .card h3 { font-family: 'Montserrat'; margin-bottom: 15px; font-size: 1.25rem; z-index: 1; position: relative; color: white;}
         .card p { font-size: 0.95rem; color: var(--text-muted); z-index: 1; position: relative; font-weight: 300;}
 
-        /* --- MODAL (WYCENA ZE ZDJĘCIA) --- */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.9); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);}
+        /* --- MODAL --- */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.9); display: none; justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);}
         .modal-content { background: var(--bg-card); padding: 40px; border-radius: 20px; width: 90%; max-width: 500px; position: relative; text-align: center; border: 1px solid rgba(217, 105, 43, 0.2); box-shadow: 0 0 50px rgba(217, 105, 43, 0.1);}
         .close { position: absolute; top: 20px; right: 25px; font-size: 28px; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
         .close:hover { color: var(--accent); }
@@ -247,11 +258,6 @@
                     <input type="file" name="attachment" accept="image/*" required>
                 </label>
                 
-                <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.75rem; color: var(--text-muted); cursor: pointer;">
-                    <input type="checkbox" required style="width: 15px; height: 15px; margin-top: 2px; border: var(--border-light); background: transparent;">
-                    <span>Zgoda na przetwarzanie danych w celu wyceny zgłoszenia.</span>
-                </label>
-
                 <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">WYŚLIJ ZAPYTANIE O WYCENĘ</button>
             </form>
         </div>
@@ -281,20 +287,28 @@
         });
 
         function toggleMobileMenu() {
-            document.getElementById('navbar').classList.toggle('menu-open');
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('menu-open');
+            document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : 'auto';
         }
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navbar').classList.remove('menu-open');
+                document.body.style.overflow = 'auto';
             });
         });
 
         function toggleModal() {
             const modal = document.getElementById('bookingModal');
-            modal.style.display = (window.getComputedStyle(modal).display === 'none') ? 'flex' : 'none';
-            document.body.style.overflow = (modal.style.display === 'flex') ? 'hidden' : 'auto';
-            document.getElementById('navbar').classList.remove('menu-open');
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.getElementById('navbar').classList.remove('menu-open');
+            }
         }
 
         window.onclick = function(event) {
