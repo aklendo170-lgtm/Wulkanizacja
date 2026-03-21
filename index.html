@@ -160,10 +160,22 @@
         form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; text-align: left; }
         input, select, textarea { padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%; font-family: 'Inter'; outline: none; transition: 0.3s; background: rgba(255,255,255,0.02); color: white;}
         input:focus, select:focus, textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.03); }
-        textarea { resize: vertical; min-height: 80px; }
+        textarea { resize: vertical; min-height: 100px; }
         
-        .file-upload { border: 1px dashed rgba(217, 105, 43, 0.4); padding: 15px; text-align: center; border-radius: 8px; background: rgba(217, 105, 43, 0.03); cursor: pointer;}
-        .file-upload input { display: none; }
+        /* Naprawa stylowania selektora (dropdowna) w Dark Mode */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a0a0ab%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 12px auto;
+            cursor: pointer;
+        }
+        select option {
+            background-color: var(--bg-card); /* Ciemne tło listy rozwijanej */
+            color: var(--text-light); /* Jasne litery na liście */
+        }
 
         /* FOOTER & MAP */
         footer { padding: 60px 10%; background: #050505; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border-light); }
@@ -198,13 +210,13 @@
             
             <div class="mobile-actions">
                 <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
-                <button class="btn" onclick="toggleModal()">Wyceń usterkę</button>
+                <button class="btn" onclick="toggleModal()">Darmowa Wycena</button>
             </div>
         </div>
 
         <div class="desktop-actions">
             <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
-            <button class="btn" onclick="toggleModal()">Wyceń usterkę</button>
+            <button class="btn" onclick="toggleModal()">Darmowa Wycena</button>
         </div>
     </nav>
 
@@ -212,7 +224,7 @@
         <h1>Solidny Serwis. <br>Twoje Bezpieczeństwo.</h1>
         <p>Nowoczesna wulkanizacja, precyzyjne prostowanie felg i auto serwis na krakowskich Rybitwach. Działamy sprawnie, na nowoczesnym sprzęcie.</p>
         <div class="hero-buttons">
-            <button class="btn" onclick="toggleModal()">DARMOWA WYCENA ZE ZDJĘCIA</button>
+            <button class="btn" onclick="toggleModal()">ZAMÓW DARMOWĄ WYCENĘ</button>
             <a href="#uslugi" class="btn-outline">POZNAJ NASZE USŁUGI</a>
         </div>
     </header>
@@ -244,7 +256,7 @@
     <section id="felgi" class="section-padding" style="border-top: 1px solid var(--border-light); background: #050505;">
         <div class="section-header">
             <h2>Zepsułeś Felgę? <br>Ratujemy to, na czym inni postawili krzyżyk.</h2>
-            <p>Spawanie TIG i prostowanie felg aluminiowych. Pokaż nam usterkę ze zdjęcia.</p>
+            <p>Spawanie TIG i prostowanie felg aluminiowych. Szybka wycena przed naprawą.</p>
         </div>
         <div class="services-grid" style="max-width: 800px; margin: 0 auto 40px auto;">
             <div class="card">
@@ -253,12 +265,12 @@
                 <p>Uzupełniamy ubytki, spawamy pęknięcia i prostujemy ranty.</p>
             </div>
             <div class="card">
-                <div class="card-icon">📸</div>
-                <h3>Wstępna Wycena Online</h3>
-                <p>Wyślij zdjęcie uszkodzonej felgi przez nasz formularz.</p>
+                <div class="card-icon">💬</div>
+                <h3>Szybka Wycena Online</h3>
+                <p>Wyślij zapytanie przez formularz, a my sprawnie oszacujemy koszty.</p>
             </div>
         </div>
-        <button class="btn" style="display: block; margin: 0 auto;" onclick="toggleModal()">WYŚLIJ ZDJĘCIE FELGI DO WYCENY</button>
+        <button class="btn" style="display: block; margin: 0 auto;" onclick="toggleModal()">DARMOWA WYCENA USTERKI</button>
     </section>
 
     <section id="cennik" class="section-padding">
@@ -303,8 +315,9 @@
                 </tbody>
             </table>
         </div>
+        
         <div style="text-align: center; margin-top: 30px;">
-            <button class="btn-outline" onclick="toggleModal()">DARMOWA WYCENA USTERKI ONLINE</button>
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 300;">Podane ceny są cenami brutto i mogą ulec zmianie w zależności od stopnia uszkodzenia felgi oraz rozmiaru koła.</p>
         </div>
     </section>
 
@@ -312,9 +325,9 @@
         <div class="modal-content">
             <span class="close" onclick="toggleModal()">×</span>
             <h2 style="font-family: Montserrat; color: white;">Darmowa Wycena Online</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Wgraj zdjęcie usterki. Im lepsza jakość, tym dokładniejsza wycena.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Opisz usterkę, a my przygotujemy dla Ciebie szybką wycenę.</p>
             
-            <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+            <form action="https://api.web3forms.com/submit" method="POST">
                 
                 <input type="hidden" name="access_key" value="27da55d5-c5b1-4686-868e-09a0d77ebb23">
                 <input type="hidden" name="redirect" value="https://web3forms.com/success">
@@ -329,20 +342,14 @@
                     <option value="Auto">Auto Serwis / Mechanika</option>
                 </select>
 
-                <textarea name="description" placeholder="Opisz krótko usterkę (opcjonalnie)"></textarea>
+                <textarea name="description" placeholder="Opisz krótko usterkę i czego potrzebujesz..." required></textarea>
                 
-                <label class="file-upload">
-                    <span style="font-weight: 700; color: var(--accent); display: block; margin-bottom: 5px;">📸 Dodaj zdjęcie zepsutej rzeczy</span>
-                    <span style="font-size: 0.8rem; color: #666;" class="file-status-text">Format JPG/PNG. Przez telefon najszybciej!</span>
-                    <input type="file" name="attachment" accept="image/*" required>
-                </label>
-                
-                <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.75rem; color: var(--text-muted); cursor: pointer;">
+                <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.75rem; color: var(--text-muted); cursor: pointer; margin-top: 5px;">
                     <input type="checkbox" required style="width: 15px; height: 15px; margin-top: 2px; border: var(--border-light); background: transparent;">
                     <span>Zgoda na przetwarzanie danych w celu wyceny zgłoszenia.</span>
                 </label>
 
-                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">WYŚLIJ ZAPYTANIE O WYCENĘ</button>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">WYŚLIJ ZAPYTANIE</button>
             </form>
         </div>
     </div>
@@ -353,7 +360,7 @@
         <p>ul. Paproci 7A, 30-714 Kraków</p>
         
         <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=Paproci%207A,%20Krak%C3%B3w&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://maps.google.com/?cid=6191388040280757872&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="data-kontaktowe">
@@ -409,20 +416,6 @@
             if (event.key === "Escape") {
                 const modal = document.getElementById('bookingModal');
                 if (modal.style.display === 'flex') toggleModal();
-            }
-        });
-
-        // WIZUALNE POTWIERDZENIE DODANIA PLIKU W MODALU
-        const fileInput = document.querySelector('input[type="file"]');
-        const fileLabel = document.querySelector('.file-status-text');
-        
-        fileInput.addEventListener('change', function() {
-            if(this.files && this.files.length > 0) {
-                fileLabel.textContent = "Wybrano: " + this.files[0].name;
-                fileLabel.style.color = "var(--accent)";
-            } else {
-                fileLabel.textContent = "Z telefonu najszybciej. Maks 5MB.";
-                fileLabel.style.color = "var(--text)";
             }
         });
     </script>
