@@ -363,7 +363,7 @@
                 
                 <label class="file-upload">
                     <span style="font-weight: 700; color: var(--accent); display: block; margin-bottom: 5px;">📸 Dodaj zdjęcie zepsutej rzeczy</span>
-                    <span style="font-size: 0.8rem; color: #666;">Format JPG/PNG. Maks 5MB.</span>
+                    <span style="font-size: 0.8rem; color: #666;" class="file-status-text">Format JPG/PNG. Maks 5MB.</span>
                     <input type="file" name="attachment" accept="image/*" required>
                 </label>
                 
@@ -434,6 +434,22 @@
             if (event.key === "Escape") {
                 const modal = document.getElementById('bookingModal');
                 if (modal.style.display === 'flex') toggleModal();
+            }
+        });
+
+        // WIZUALNE POTWIERDZENIE DODANIA PLIKU W MODALU
+        const fileInput = document.querySelector('input[type="file"]');
+        const fileLabel = document.querySelector('.file-status-text');
+        
+        fileInput.addEventListener('change', function() {
+            if(this.files && this.files.length > 0) {
+                fileLabel.textContent = "Wybrano: " + this.files[0].name;
+                fileLabel.style.color = "var(--accent)";
+                fileLabel.style.fontWeight = "700";
+            } else {
+                fileLabel.textContent = "Format JPG/PNG. Maks 5MB.";
+                fileLabel.style.color = "#666";
+                fileLabel.style.fontWeight = "normal";
             }
         });
     </script>
