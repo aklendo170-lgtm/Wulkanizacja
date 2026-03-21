@@ -13,12 +13,12 @@
     <style>
         /* --- NOWOCZESNA PALETA KOLORÓW (Mroczny Lux) --- */
         :root { 
-            --bg-main: #0a0a0c;      /* Bardzo mroczny grafit */
-            --bg-card: #141417;      /* Nieco jaśniejszy pod karty */
-            --accent: #d9692b;       /* Bursztynowy pomarańcz (jak na makiecie) */
+            --bg-main: #0a0a0c;      
+            --bg-card: #141417;      
+            --accent: #d9692b;       
             --accent-glow: rgba(217, 105, 43, 0.4);
-            --text-light: #f4f4f5;   /* Jasny kremowy (off-white) */
-            --text-muted: #a0a0ab;   /* Przygaszony szary pod opisy */
+            --text-light: #f4f4f5;   
+            --text-muted: #a0a0ab;   
             --glass-bg: rgba(20, 20, 23, 0.65);
             --glass-border: rgba(255, 255, 255, 0.08);
             --border-light: rgba(255, 255, 255, 0.03);
@@ -48,11 +48,15 @@
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; padding: 5px; flex-shrink: 0; }
         .hamburger span { width: 25px; height: 2px; background-color: var(--text-light); transition: all 0.3s ease-in-out; }
 
-        /* MENU LINKS */
+        /* MENU LINKS - IDEALNIE WYŚRODKOWANE */
         .nav-links { 
             display: flex; gap: 30px; align-items: center; 
             background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            /* Zmiana: absolutne centrowanie na ekranie */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .nav-links a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.85rem; position: relative; padding-bottom: 5px; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.5px;}
         .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
@@ -72,7 +76,8 @@
             .hamburger { display: flex; }
             .nav-links, .nav-actions { display: none; width: 100%; flex-direction: column; text-align: center; z-index: 100;}
             
-            nav.menu-open .nav-links { display: flex; padding: 20px 0 10px 0; gap: 20px; }
+            /* Reset centrowania dla mobile */
+            nav.menu-open .nav-links { display: flex; padding: 20px 0 10px 0; gap: 20px; position: relative; left: auto; transform: none;}
             nav.menu-open .nav-actions { display: flex; padding-bottom: 10px; gap: 10px; z-index: 101;}
             nav.menu-open .nav-actions .btn, nav.menu-open .nav-actions .btn-outline { width: 100%; height: 50px; text-align: center;}
             
@@ -84,7 +89,6 @@
         /* --- HERO SECTION --- */
         .hero {
             height: 75vh;
-            /* WAŻNE: Tło z oponami, ale bez nałożonych tekstów */
             background: linear-gradient(rgba(10, 10, 12, 0.8), rgba(10, 10, 12, 0.85)), url('https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=2000&auto=format&fit=crop');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -102,13 +106,12 @@
         .section-header p { font-size: 1.1rem; color: var(--text-muted); font-weight: 300;}
         .section-padding { padding: 80px 10%; }
 
-        /* --- USŁUGI (Eye-Catching Glow) --- */
+        /* --- USŁUGI --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .card { 
             background: var(--bg-card); padding: 40px; border-radius: 15px; text-align: center; border: 1px solid var(--border-light); 
             transition: transform 0.3s; position: relative; overflow: hidden;
         }
-        /* Subtelny "glowing" gradient po najechaniu - łapie oko */
         .card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at top right, var(--accent-glow), transparent 60%);
@@ -120,9 +123,6 @@
         .card-icon { width: 50px; height: 50px; background: rgba(217, 105, 43, 0.08); color: var(--accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; margin: 0 auto 20px auto; border: 1px solid rgba(217, 105, 43, 0.15); z-index: 1; position: relative;}
         .card h3 { font-family: 'Montserrat'; margin-bottom: 15px; font-size: 1.25rem; z-index: 1; position: relative; color: white;}
         .card p { font-size: 0.95rem; color: var(--text-muted); z-index: 1; position: relative; font-weight: 300;}
-
-        /* --- PROSTOWANIE FELG --- */
-        .map-container { width: 100%; height: 450px; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); border: 1px solid var(--border-light);}
 
         /* --- MODAL (WYCENA ZE ZDJĘCIA) --- */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.9); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);}
@@ -165,7 +165,7 @@
 
         <div class="nav-actions">
             <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
-            <button class="btn" onclick="toggleModal()">Darmowa wycena ze zdjęcia</button>
+            <button class="btn" onclick="toggleModal()">Wyceń usterkę</button>
         </div>
     </nav>
 
@@ -243,7 +243,7 @@
                 
                 <label class="file-upload">
                     <span style="font-weight: 700; color: var(--accent); display: block; margin-bottom: 5px;">📸 Dodaj zdjęcie zepsutej rzeczy</span>
-                    <span style="font-size: 0.8rem; color: #666;">Format JPG/PNG. Maks 5MB. Przez telefon zrobisz to najszybciej!</span>
+                    <span style="font-size: 0.8rem; color: #666;">Format JPG/PNG. Maks 5MB.</span>
                     <input type="file" name="attachment" accept="image/*" required>
                 </label>
                 
@@ -271,7 +271,6 @@
     </footer>
 
     <script>
-        // Efekt Glassmorphism na pasku nawigacji
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -281,19 +280,16 @@
             }
         });
 
-        // Obsługa menu mobilnego (Hamburger)
         function toggleMobileMenu() {
             document.getElementById('navbar').classList.toggle('menu-open');
         }
 
-        // Zamykanie menu po kliknięciu w link na mobile
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navbar').classList.remove('menu-open');
             });
         });
 
-        // Obsługa modala z wyceną online
         function toggleModal() {
             const modal = document.getElementById('bookingModal');
             modal.style.display = (window.getComputedStyle(modal).display === 'none') ? 'flex' : 'none';
