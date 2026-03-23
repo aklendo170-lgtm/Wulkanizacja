@@ -14,7 +14,481 @@
     
     <meta property="og:title" content="JARVIS SERWIS | Wulkanizacja i Felgi Kraków">
     <meta property="og:description" content="Profesjonalne prostowanie felg i wymiana opon na Rybitwach. Darmowa wycena online!">
+    <meta property="og:type" content="website"><!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3774/3774270.png" type="image/png">
+    
+    <title>JARVIS SERWIS | Wulkanizacja i Prostowanie Felg Kraków | Rybitwy</title>
+    <meta name="description" content="Nowoczesny wymiar wulkanizacji w Krakowie. Precyzyjne prostowanie felg, szybka wymiana opon i rzetelny auto serwis na Rybitwach. Zarezerwuj termin online!">
+    <meta name="keywords" content="wulkanizacja Kraków, prostowanie felg Kraków, wymiana opon Rybitwy, auto serwis Kraków, naprawa alufelg, wulkanizacja Rybitwy">
+    <meta name="author" content="JARVIS SERWIS">
+    
+    <meta property="og:title" content="JARVIS SERWIS | Wulkanizacja i Felgi Kraków">
+    <meta property="og:description" content="Profesjonalne prostowanie felg i wymiana opon na Rybitwach. Darmowa wycena online!">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://twojadomena.pl"> 
+    <meta property="og:image" content="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1200&auto=format&fit=crop">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoRepair",
+      "name": "F.H.U. JARVIS Jaromir Multan",
+      "image": "https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1200&auto=format&fit=crop",
+      "telephone": "+48 787 940 887",
+      "email": "jarvis.wulkanizacja@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Paproci 7A",
+        "addressLocality": "Kraków",
+        "postalCode": "30-714",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.0401, 
+        "longitude": 19.9984
+      },
+      "url": "https://twojadomena.pl",
+      "priceRange": "$$"
+    }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --bg-main: #0a0a0c;      
+            --bg-card: #141417;      
+            --accent: #d9692b;       
+            --accent-glow: rgba(217, 105, 43, 0.4);
+            --text-light: #f4f4f5;   
+            --text-muted: #a0a0ab;   
+            --glass-bg: rgba(20, 20, 23, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.03);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+
+        /* --- NAVBAR --- */
+        nav { 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; 
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border); padding: 10px 5%;
+        }
+        
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1rem, 4.5vw, 1.3rem); text-decoration: none; color: var(--text-light); z-index: 2100; display: flex; align-items: center; gap: 10px; text-transform: uppercase; position: relative;}
+        .logo span { color: var(--accent); }
+        .logo-icon { width: 35px; height: 35px; background: var(--glass-border); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px solid var(--accent); font-size: 0.9rem;}
+
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 2100; padding: 5px; flex-shrink: 0; position: relative;}
+        .hamburger span { width: 25px; height: 2px; background-color: var(--text-light); transition: all 0.3s ease-in-out; }
+
+        /* --- MENU DESKTOPOWE --- */
+        .desktop-menu { 
+            display: flex; gap: 30px; align-items: center; 
+            background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            position: absolute; left: 50%; transform: translateX(-50%);
+        }
+        .desktop-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.85rem; position: relative; padding-bottom: 5px; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.5px;}
+        .desktop-menu a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
+        .desktop-menu a:hover { color: var(--accent); }
+        .desktop-menu a:hover::after { width: 100%; }
+
+        .desktop-actions { display: flex; gap: 15px; align-items: center; }
+
+        .btn { background: var(--accent); color: white; padding: 14px 30px; text-decoration: none; font-weight: 700; border-radius: 30px; transition: all 0.3s; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px var(--accent-glow);}
+        .btn:hover { background: #e67e00; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(217, 105, 43, 0.6); }
+
+        .btn-outline { background: transparent; color: var(--text-light); padding: 12px 25px; border-radius: 30px; border: 1px solid var(--glass-border); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: all 0.3s; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px;}
+        .btn-outline:hover { background: rgba(217, 105, 43, 0.1); border-color: var(--accent); }
+
+        /* --- ODDZIELNE MENU MOBILNE (KULOODPORNE) --- */
+        .mobile-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--bg-main);
+            z-index: 2050;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .mobile-overlay.active { opacity: 1; pointer-events: auto; }
+        .close-menu { position: absolute; top: 20px; right: 25px; font-size: 40px; color: var(--text-light); cursor: pointer; display: none; z-index: 2060; }
+        .mobile-overlay.active .close-menu { display: block; }
+        .mobile-overlay a.nav-item { text-decoration: none; color: var(--text-light); font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .mobile-overlay .mobile-actions { display: flex; flex-direction: column; gap: 15px; width: 80%; max-width: 300px; margin-top: 30px; }
+        .mobile-overlay .btn, .mobile-overlay .btn-outline { width: 100%; height: 55px; }
+
+        @media (max-width: 1150px) { 
+            .hamburger { display: flex; }
+            .desktop-menu, .desktop-actions { display: none; }
+            
+            nav.menu-open { background: transparent !important; border: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+            nav.menu-open .hamburger span { opacity: 0; }
+        }
+        
+        @media (max-width: 400px) {
+            nav { padding: 15px 3%; }
+            .logo { font-size: 0.95rem; }
+            .logo-icon { width: 30px; height: 30px; font-size: 0.8rem; }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 75vh;
+            background: linear-gradient(rgba(10, 10, 12, 0.8), rgba(10, 10, 12, 0.85)), url('https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; 
+            padding: 100px 10% 40px; 
+            position: relative; 
+        }
+
+        .hero h1 { font-family: 'Montserrat'; font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: -1px;}
+        .hero p { font-size: 1.1rem; margin-bottom: 30px; max-width: 650px; color: var(--text-muted); font-weight: 300; }
+        .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;}
+
+        /* --- SEKCJE OGÓLNE --- */
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-family: 'Montserrat'; font-size: 2.2rem; margin-bottom: 10px; color: var(--text-light); text-transform: uppercase; font-weight: 900; letter-spacing: -0.5px;}
+        .section-header h2 span { color: var(--accent); }
+        .section-header p { font-size: 1.1rem; color: var(--text-muted); font-weight: 300;}
+        .section-padding { padding: 80px 10%; }
+        
+        @media (max-width: 768px) {
+            .section-padding { padding: 60px 5%; }
+            .section-header h2 { font-size: 1.8rem; }
+        }
+
+        /* --- USŁUGI --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { 
+            background: var(--bg-card); padding: 40px; border-radius: 15px; text-align: center; border: 1px solid var(--border-light); 
+            transition: transform 0.3s; position: relative; overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, var(--accent-glow), transparent 60%);
+            opacity: 0; transition: 0.3s; z-index: 0;
+        }
+        .card:hover { transform: translateY(-5px); border-color: rgba(217, 105, 43, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
+        .card:hover::before { opacity: 1; }
+
+        .card-icon { width: 50px; height: 50px; background: rgba(217, 105, 43, 0.08); color: var(--accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; margin: 0 auto 20px auto; border: 1px solid rgba(217, 105, 43, 0.15); z-index: 1; position: relative;}
+        .card h3 { font-family: 'Montserrat'; margin-bottom: 15px; font-size: 1.25rem; z-index: 1; position: relative; color: white;}
+        .card p { font-size: 0.95rem; color: var(--text-muted); z-index: 1; position: relative; font-weight: 300;}
+
+        /* --- CENNIK --- */
+        .price-table-container { 
+            max-width: 800px; margin: 0 auto; background: var(--bg-card); border-radius: 15px; 
+            border: 1px solid var(--border-light); overflow-x: auto; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            -webkit-overflow-scrolling: touch; 
+        }
+        .price-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 450px; }
+        .price-table th, .price-table td { padding: 20px 25px; border-bottom: 1px solid var(--border-light); }
+        .price-table th { background: rgba(255, 255, 255, 0.02); font-family: 'Montserrat', sans-serif; color: var(--text-light); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; font-weight: 700; }
+        .price-table tr { transition: background 0.3s ease; }
+        .price-table tr:hover { background: rgba(217, 105, 43, 0.05); }
+        .price-table tr:last-child td { border-bottom: none; }
+        .price-table td { font-size: 0.95rem; color: var(--text-muted); }
+        .price-table td.price { color: var(--accent); font-weight: 700; text-align: right; font-size: 1.1rem; white-space: nowrap; }
+        
+        @media (max-width: 600px) {
+            .price-table, .price-table tbody, .price-table tr, .price-table td {
+                display: block; width: 100%; text-align: center;
+            }
+            .price-table thead { display: none; } 
+            .price-table tr { padding: 15px; border-bottom: 1px solid var(--border-light); }
+            .price-table td { padding: 5px 10px; border: none; }
+            .price-table td:first-child { font-weight: 600; color: var(--text-light); font-size: 0.95rem; margin-bottom: 5px; }
+            .price-table td.price { text-align: center; font-size: 1.2rem; color: var(--accent); font-family: 'Montserrat', sans-serif; }
+        }
+
+        /* --- MODAL --- */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.9); display: none; justify-content: center; align-items: center; z-index: 3000; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);}
+        .modal-content { background: var(--bg-card); padding: 40px; border-radius: 20px; width: 90%; max-width: 500px; position: relative; text-align: center; border: 1px solid rgba(217, 105, 43, 0.2); box-shadow: 0 0 50px rgba(217, 105, 43, 0.1); max-height: 90vh; overflow-y: auto; }
+        .close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: var(--text-muted); transition: 0.3s; }
+        .close:hover { color: var(--accent); }
+
+        form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; text-align: left; }
+        input, select, textarea { padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; width: 100%; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; transition: 0.3s; background: rgba(255,255,255,0.02); color: white;}
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); background: rgba(255,255,255,0.04); }
+        textarea { resize: vertical; min-height: 100px; }
+        
+        select option {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* FOOTER & MAP */
+        footer { padding: 60px 10%; background: #050505; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border-light); }
+        footer h3 { margin-bottom: 15px; font-family: 'Montserrat'; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 0.5px;}
+        footer .data-kontaktowe { margin-top: 30px; font-size: 0.95rem; opacity: 0.9;}
+        
+        .map-container { 
+            width: 100%; max-width: 800px; height: 350px; margin: 40px auto 0 auto; 
+            border-radius: 15px; overflow: hidden; border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <span class="close-menu" onclick="toggleMobileMenu()">×</span>
+        <a href="#uslugi" class="nav-item">Wulkanizacja</a>
+        <a href="#felgi" class="nav-item">Prostowanie Felg</a>
+        <a href="#cennik" class="nav-item">Cennik</a>
+        <a href="#kontakt" class="nav-item">Kontakt</a>
+        <div class="mobile-actions">
+            <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
+            <button class="btn" onclick="toggleModal()">Darmowa Wycena</button>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">🔧</div>
+            JARVIS <span>SERWIS</span>
+        </a>
+        
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="desktop-menu">
+            <a href="#uslugi">Wulkanizacja</a>
+            <a href="#felgi">Prostowanie Felg</a>
+            <a href="#cennik">Cennik</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
+
+        <div class="desktop-actions">
+            <a href="tel:787940887" class="btn-outline">📞 787 940 887</a>
+            <button class="btn" onclick="toggleModal()">Darmowa Wycena</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Solidny Serwis. <br>Twoje Bezpieczeństwo.</h1>
+        <p>Nowoczesna wulkanizacja, precyzyjne prostowanie felg i auto serwis na krakowskich Rybitwach. Działamy sprawnie, na nowoczesnym sprzęcie.</p>
+        <div class="hero-buttons">
+            <button class="btn" onclick="toggleModal()">ZAMÓW DARMOWĄ WYCENĘ</button>
+            <a href="#uslugi" class="btn-outline">POZNAJ NASZE USŁUGI</a>
+        </div>
+    </header>
+
+    <section id="uslugi" class="section-padding">
+        <div class="section-header">
+            <h2>Wulkanizacja i Auto Serwis</h2>
+            <p>Pełny zakres usług dla Twojego samochodu na krakowskich Rybitwach.</p>
+        </div>
+        <div class="services-grid">
+            <div class="card">
+                <div class="card-icon">🛞</div>
+                <h3>Serwis i Przechowalnia</h3>
+                <p>Kompleksowy serwis opon, obsługa czujników TPMS oraz bezpieczna przechowalnia kół i opon.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚖️</div>
+                <h3>Wyważanie Komputerowe</h3>
+                <p>Precyzyjne wyważanie kół gwarantujące komfortową jazdę bez drgań kierownicy.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔧</div>
+                <h3>Usługi Mechaniczne</h3>
+                <p>Wymiana oleju, naprawa zawieszenia oraz pełny serwis układu hamulcowego.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="felgi" class="section-padding" style="border-top: 1px solid var(--border-light); background: #050505;">
+        <div class="section-header">
+            <h2>Spawanie Aluminium i Felgi</h2>
+            <p>Naprawiamy to, na czym inni postawili krzyżyk. Szybka wycena przed naprawą.</p>
+        </div>
+        <div class="services-grid" style="max-width: 800px; margin: 0 auto 40px auto;">
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3>Prostowanie i Spawanie</h3>
+                <p>Profesjonalne prostowanie felg oraz precyzyjne spawanie aluminium.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Darmowa Wycena Online</h3>
+                <p>Opisz problem przez formularz, a my sprawnie oszacujemy koszty naprawy.</p>
+            </div>
+        </div>
+        <button class="btn" style="display: block; margin: 0 auto;" onclick="toggleModal()">WYCEŃ USTERKĘ</button>
+    </section>
+
+    <section id="cennik" class="section-padding">
+        <div class="section-header">
+            <h2>Przykładowy <span>Cennik</span></h2>
+            <p>Sprawdź orientacyjne koszty. Każde uszkodzenie felgi wyceniamy indywidualnie.</p>
+        </div>
+        
+        <div class="price-table-container">
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Rodzaj Usługi</th>
+                        <th style="text-align: right;">Cena orientacyjna</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Wymiana opon (komplet) z wyważeniem</td>
+                        <td class="price">od 120 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Prostowanie felgi aluminiowej</td>
+                        <td class="price">od 150 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Prostowanie felgi stalowej</td>
+                        <td class="price">od 80 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Spawanie pęknięcia felgi (metoda TIG)</td>
+                        <td class="price">od 120 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Wyważanie kół (komplet 4 szt.)</td>
+                        <td class="price">od 60 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Bieżąca mechanika (klocki, tarcze, oleje)</td>
+                        <td class="price">Wycena po oględzinach</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 300;">Podane ceny są cenami brutto i mogą ulec zmianie w zależności od stopnia uszkodzenia felgi oraz rozmiaru koła.</p>
+        </div>
+    </section>
+
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal()">×</span>
+            <h2 style="font-family: Montserrat; color: white;">Darmowa Wycena Online</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Opisz usterkę, a my przygotujemy dla Ciebie szybką wycenę.</p>
+            
+            <form action="https://api.web3forms.com/submit" method="POST">
+                
+                <input type="hidden" name="access_key" value="27da55d5-c5b1-4686-868e-09a0d77ebb23">
+                <input type="hidden" name="redirect" value="https://aklendo170-lgtm.github.io/Wulkanizacja/sukces.html">
+
+                <input type="text" name="name" placeholder="Twoje Imię i Nazwisko" required>
+                <input type="tel" name="phone" placeholder="Twój Numer Telefonu" required>
+                
+                <select name="service_type" required>
+                    <option value="" disabled selected>Co naprawiamy?</option>
+                    <option value="Felga">Uszkodzona Felga</option>
+                    <option value="Opona">Naprawa Opony</option>
+                    <option value="Auto">Auto Serwis / Mechanika</option>
+                </select>
+
+                <textarea name="description" placeholder="Opisz krótko usterkę i czego potrzebujesz..." required></textarea>
+                
+                <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.75rem; color: var(--text-muted); cursor: pointer; margin-top: 5px;">
+                    <input type="checkbox" required style="width: 15px; height: 15px; margin-top: 2px; border: var(--border-light); background: transparent;">
+                    <span>Zgoda na przetwarzanie danych w celu wyceny zgłoszenia.</span>
+                </label>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">WYŚLIJ ZAPYTANIE</button>
+            </form>
+        </div>
+    </div>
+
+    <footer id="kontakt">
+        <h3>F.H.U. JARVIS</h3>
+        <p>Jaromir Multan</p>
+        <p>ul. Paproci 7A, 30-714 Kraków</p>
+        
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.915598108422!2d19.99849207693892!3d50.03164921743513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471644d6b8b09db5%3A0xc345bbcdb76dcd01!2sPaproci%207A%2C%2030-714%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1714068593498!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="data-kontaktowe">
+            <p>📞 787 940 887</p>
+            <p>✉️ jarvis.wulkanizacja@gmail.com</p>
+            <p style="opacity: 0.6; margin-top: 15px;">Poniedziałek - Piątek: 08:30 - 17:00</p>
+            <p style="opacity: 0.6;">Sobota: Zamknięte (Umów wizytę telefonicznie)</p>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">© 2024 F.H.U. JARVIS Kraków. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleMobileMenu() {
+            const nav = document.getElementById('navbar');
+            const overlay = document.getElementById('mobileMenu');
+            nav.classList.toggle('menu-open');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : 'auto';
+        }
+
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navbar').classList.remove('menu-open');
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        function toggleModal() {
+            const modal = document.getElementById('bookingModal');
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.getElementById('navbar').classList.remove('menu-open');
+                document.getElementById('mobileMenu').classList.remove('active');
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target == modal) toggleModal();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const modal = document.getElementById('bookingModal');
+                if (modal.style.display === 'flex') toggleModal();
+            }
+        });
+    </script>
+</body>
+</html>
     <meta property="og:url" content="https://twojadomena.pl"> 
     <meta property="og:image" content="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1200&auto=format&fit=crop">
     
