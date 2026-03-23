@@ -13,7 +13,7 @@
     <meta name="author" content="JARVIS SERWIS">
     
     <meta property="og:title" content="JARVIS SERWIS | Wulkanizacja i Felgi Kraków">
-    <meta property="og:description" content="Profesjonalne prostowanie felg i wymiana opon na Rybitwach. Szybki kontakt online!">
+    <meta property="og:description" content="Profesjonalne prostowanie felg i wymiana opon na Rybitwach. Darmowa wycena online!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://twojadomena.pl"> 
     <meta property="og:image" content="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1200&auto=format&fit=crop">
@@ -66,7 +66,7 @@
         /* --- NAVBAR --- */
         nav { 
             position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; 
-            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; gap: 20px;
             transition: all 0.4s ease;
         }
         nav.scrolled {
@@ -86,14 +86,13 @@
             display: flex; gap: 30px; align-items: center; 
             background: var(--glass-bg); padding: 10px 30px; border-radius: 30px; border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            position: absolute; left: 50%; transform: translateX(-50%);
         }
         .desktop-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.85rem; position: relative; padding-bottom: 5px; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.5px;}
         .desktop-menu a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--accent); transition: width 0.3s ease; }
         .desktop-menu a:hover { color: var(--accent); }
         .desktop-menu a:hover::after { width: 100%; }
 
-        .desktop-actions { display: flex; gap: 15px; align-items: center; }
+        .desktop-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
 
         .btn { background: var(--accent); color: white; padding: 14px 30px; text-decoration: none; font-weight: 700; border-radius: 30px; transition: all 0.3s; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px var(--accent-glow);}
         .btn:hover { background: #e67e00; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(217, 105, 43, 0.6); }
@@ -116,7 +115,7 @@
         .mobile-overlay .mobile-actions { display: flex; flex-direction: column; gap: 15px; width: 80%; max-width: 300px; margin-top: 30px; }
         .mobile-overlay .btn, .mobile-overlay .btn-outline { width: 100%; height: 55px; }
 
-        @media (max-width: 1150px) { 
+        @media (max-width: 1200px) { 
             .hamburger { display: flex; }
             .desktop-menu, .desktop-actions { display: none; }
             
